@@ -50,7 +50,7 @@ namespace ServerStatusReporter
 
         private static void ReturnDiskSpace()
         {
-            string reportHeader = "Server\t\tDrive\tFree(GB)\t\tTotal(GB)\t\tUpdates";
+            const string ReportHeader = "Server\t\tDrive\tFree(GB)\t\tTotal(GB)\t\tUpdates";
             string reportBody = String.Empty;
             DriveInfo[] drives = DriveInfo.GetDrives();
             foreach (var drive in drives)
@@ -58,7 +58,7 @@ namespace ServerStatusReporter
                 reportBody += "\n" + Environment.MachineName + ":\t" + drive.Name + "\t" + (drive.AvailableFreeSpace / 1073741824.0) + "\t" + (drive.TotalSize / 1073741824.0) + "\t0";
             }
 
-            Console.WriteLine(reportHeader + reportBody);
+            Console.WriteLine(ReportHeader + reportBody);
         }
     }
 }
