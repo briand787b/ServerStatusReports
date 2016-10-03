@@ -1,1 +1,7 @@
 D:\ServerStuff\ServerStatusReporter\ServerStatusReporter\bin\Debug\ServerStatusReporter.exe.config
+C:\Users\Brian\programming\Visual Studio 2015\Projects\ServerStatusReports\ServerStatusReporter\bin\Debug\ServerStatusReporter.exe.config
+C:\Users\Brian\programming\Visual Studio 2015\Projects\ServerStatusReports\ServerStatusReporter\bin\Debug\ServerStatusReporter.exe
+C:\Users\Brian\programming\Visual Studio 2015\Projects\ServerStatusReports\ServerStatusReporter\bin\Debug\ServerStatusReporter.pdb
+C:\Users\Brian\programming\Visual Studio 2015\Projects\ServerStatusReports\ServerStatusReporter\obj\Debug\ServerStatusReporter.csprojResolveAssemblyReference.cache
+C:\Users\Brian\programming\Visual Studio 2015\Projects\ServerStatusReports\ServerStatusReporter\obj\Debug\ServerStatusReporter.exe
+C:\Users\Brian\programming\Visual Studio 2015\Projects\ServerStatusReports\ServerStatusReporter\obj\Debug\ServerStatusReporter.pdb

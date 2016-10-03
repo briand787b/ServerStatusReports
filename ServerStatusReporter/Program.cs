@@ -9,21 +9,38 @@ namespace ServerStatusReporter
 {
     internal class Program
     {
+        private static bool isVerbose;
+
         private static void Main(string[] args)
         {
+            if (args.Length == 0)
+            {
+                ReturnDiskSpace();
+                return;
+            }
+
             switch (args[0])
             {
                 case "-H":
                 case "--help":
                     // Display a list of options that help the user use the program.
-                    Console.Write("\nHelp page for FreeDiskSpace Program\n\nOptions:\n\t-H\t\tHelp page\n\t--help\t\tHelp page\n\t-r\t\tExecute program to report disk spaces\n\n");
+                    Console.Write("\nHelp page for FreeDiskSpace Program\n\nOptions:\n\t-H\t\t\tHelp page\n\t--help\t\t\tHelp page\n\t-r {recipient}\t\tSend report via email\n\t-v\t\t\tRun program in verbose mode.\n\n");
                     break;
 
                 case "-r":
                     // Report the findings to the supplied email address (args[1]).
                     ReturnDiskSpace();
+                    // Use email client.
                     break;
 
+                case "-vr":
+                case "-rv":
+                    // Run the program in verbose mode (output all activity to console).
+                    isVerbose = true;
+                    ReturnDiskSpace();
+                    // Use email client.
+                    break;
+               
                 default:
                     Console.Write("\"" + args[0] + "\"" + " command does not exist");
                     return;
