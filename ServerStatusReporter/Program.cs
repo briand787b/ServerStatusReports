@@ -40,12 +40,11 @@ namespace ServerStatusReporter
                 case "-vr":
                 case "-rv":
                     // Run the program in verbose mode (output all activity to console).
-                    Console.Write("Verbose mode is temporarily unavailable!\n\n");
+                    Console.Write("Running in verbose mdoe!\n\n");
                     isVerbose = true;
                     _mailTo = args[1];
                     ReturnDiskSpace();
-                    Console.WriteLine("\n" + args[1]);
-                    // Use email client.
+                    Console.WriteLine("\nThis report has been sent to " + args[1]);
                     break;
 
                 default:
@@ -64,12 +63,13 @@ namespace ServerStatusReporter
                 reportBody += "\n" + Environment.MachineName + ":\t" + drive.Name + "\t" + (drive.AvailableFreeSpace / 1073741824.0) + "\t" + (drive.TotalSize / 1073741824.0) + "\t0";
             }
 
-            Console.WriteLine(ReportHeader + reportBody);
-
             if (isVerbose)
             {
-                EmailToTarget(ReportHeader + reportBody);
+                Console.WriteLine(ReportHeader + reportBody);
             }
+
+            EmailToTarget(ReportHeader + reportBody);
+            
         }
 
         private static void EmailToTarget(string body)
@@ -81,7 +81,6 @@ namespace ServerStatusReporter
             msg.To.Add(_mailTo);
             msg.Subject = "test";
             msg.Body = body;
-            //msg.Priority = MailPriority.High;
 
             using (SmtpClient client = new SmtpClient())
             {
