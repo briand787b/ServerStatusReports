@@ -5,3 +5,5 @@ C:\Users\Brian\programming\Visual Studio 2015\Projects\ServerStatusReports\Serve
 C:\Users\Brian\programming\Visual Studio 2015\Projects\ServerStatusReports\ServerStatusReporter\obj\Debug\ServerStatusReporter.csprojResolveAssemblyReference.cache
 C:\Users\Brian\programming\Visual Studio 2015\Projects\ServerStatusReports\ServerStatusReporter\obj\Debug\ServerStatusReporter.exe
 C:\Users\Brian\programming\Visual Studio 2015\Projects\ServerStatusReports\ServerStatusReporter\obj\Debug\ServerStatusReporter.pdb
+D:\ServerStuff\ServerStatusReporter\ServerStatusReporter\obj\Debug\ServerStatusReporter.exe
+D:\ServerStuff\ServerStatusReporter\ServerStatusReporter\obj\Debug\ServerStatusReporter.pdb

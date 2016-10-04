@@ -78,17 +78,16 @@ namespace ServerStatusReporter
             MailMessage msg = new MailMessage();
 
             msg.From = new MailAddress("briand787b@gmail.com");
-            msg.To.Add("briand787b@gmail.com");
+            msg.To.Add(_mailTo);
             msg.Subject = "test";
-            msg.Body = "Test Content";
+            msg.Body = body;
             //msg.Priority = MailPriority.High;
-
 
             using (SmtpClient client = new SmtpClient())
             {
                 client.EnableSsl = true;
                 client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("briand787b@gmail.com", Credentials.Password);
+                client.Credentials = new NetworkCredential("briand787b@gmail.com", Credentials.Password());
                 client.Host = "smtp.gmail.com";
                 client.Port = 587;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;

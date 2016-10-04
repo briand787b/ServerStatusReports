@@ -1,0 +1,2 @@
+HOST = exrelay-nj1.serverdata.net
+Port = 25
