@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServerStatusReporter
 {
+    using System.Runtime.InteropServices;
+
     internal class Program
     {
         private static bool isVerbose;
@@ -38,13 +36,14 @@ namespace ServerStatusReporter
                 case "-vr":
                 case "-rv":
                     // Run the program in verbose mode (output all activity to console).
+                    Console.Write("Verbose mode is temporarily unavailable!");
                     isVerbose = true;
                     mailTo = args[1];
                     ReturnDiskSpace();
                     Console.WriteLine("\n" + args[1]);
                     // Use email client.
                     break;
-               
+
                 default:
                     Console.Write("\"" + args[0] + "\"" + " command does not exist");
                     return;
@@ -53,11 +52,15 @@ namespace ServerStatusReporter
 
         private static void ReturnDiskSpace()
         {
+            const string ReportHeader = "Server\t\tDrive\tFree(GB)\t\tTotal(GB)\t\tUpdates";
+            string reportBody = String.Empty;
             DriveInfo[] drives = DriveInfo.GetDrives();
             foreach (var drive in drives)
             {
-                Console.WriteLine("{0} / {1}", (drive.AvailableFreeSpace / 1073741824.0), (drive.TotalSize / 1073741824.0));
+                reportBody += "\n" + Environment.MachineName + ":\t" + drive.Name + "\t" + (drive.AvailableFreeSpace / 1073741824.0) + "\t" + (drive.TotalSize / 1073741824.0) + "\t0";
             }
+
+            Console.WriteLine(ReportHeader + reportBody);
         }
     }
 }
