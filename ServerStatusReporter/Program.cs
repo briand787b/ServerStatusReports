@@ -11,6 +11,8 @@ namespace ServerStatusReporter
     {
         private static bool isVerbose;
 
+        private static string mailTo;
+
         private static void Main(string[] args)
         {
             if (args.Length == 0)
@@ -37,7 +39,9 @@ namespace ServerStatusReporter
                 case "-rv":
                     // Run the program in verbose mode (output all activity to console).
                     isVerbose = true;
+                    mailTo = args[1];
                     ReturnDiskSpace();
+                    Console.WriteLine("\n" + args[1]);
                     // Use email client.
                     break;
                
