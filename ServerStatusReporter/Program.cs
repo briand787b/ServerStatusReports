@@ -17,7 +17,7 @@ namespace ServerStatusReporter
         {
             if (args.Length == 0)
             {
-                ReturnDiskSpace();
+                Console.WriteLine("Error:  No argument was given to program.  Please see \"--help\" \n");
                 return;
             }
 
@@ -27,6 +27,16 @@ namespace ServerStatusReporter
                 case "--help":
                     // Display a list of options that help the user use the program.
                     Console.Write("\nHelp page for FreeDiskSpace Program\n\nOptions:\n\t-H\t\t\tHelp page\n\t--help\t\t\tHelp page\n\t-r {recipient}\t\tSend report via email\n\t-v\t\t\tRun program in verbose mode.\n\n");
+                    break;
+
+                case "-v":
+                    // Display the drive space to the console, but do not email anything
+                    Console.Write("Running in verbose mode!\n\n");
+                    Console.WriteLine("Warning!  No email will be sent with current command line arguments\n");
+                    isVerbose = true;
+                    _mailTo = String.Empty;
+                    ReturnDiskSpace();
+                    Console.WriteLine("\nProgram completed!\n\n");
                     break;
 
                 case "-r":
@@ -40,7 +50,7 @@ namespace ServerStatusReporter
                 case "-vr":
                 case "-rv":
                     // Run the program in verbose mode (output all activity to console).
-                    Console.Write("Running in verbose mdoe!\n\n");
+                    Console.Write("Running in verbose mode!\n\n");
                     isVerbose = true;
                     _mailTo = args[1];
                     ReturnDiskSpace();
@@ -55,6 +65,11 @@ namespace ServerStatusReporter
 
         private static void ReturnDiskSpace()
         {
+            if (isVerbose)
+            {
+                Console.WriteLine("Checking disk space...\n");
+            }
+
             const string ReportHeader = "Server\t\tDrive\tFree(GB)\t\tTotal(GB)\t\tUpdates";
             string reportBody = String.Empty;
             DriveInfo[] drives = DriveInfo.GetDrives();
@@ -68,7 +83,10 @@ namespace ServerStatusReporter
                 Console.WriteLine(ReportHeader + reportBody);
             }
 
-            EmailToTarget(ReportHeader + reportBody);
+            if (!string.IsNullOrWhiteSpace(_mailTo))
+            {
+                EmailToTarget(ReportHeader + reportBody);
+            }
             
         }
 
