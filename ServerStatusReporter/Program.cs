@@ -17,7 +17,7 @@ namespace ServerStatusReporter
         {
             if (args.Length == 0)
             {
-                Console.WriteLine("Error:  No argument was given to program.  Please see \"--help\" \n");
+                Console.WriteLine("Error:  No switch was given to program.  Please see \"--help\" \n");
                 return;
             }
 
@@ -41,6 +41,11 @@ namespace ServerStatusReporter
 
                 case "-r":
                     // Report the findings to the supplied email address (args[1])
+                    if (args.Length < 2)
+                    {
+                        Console.WriteLine("Error!  No send-to email address was specified.\n");
+                    }
+
                     _mailTo = args[1];
                     ReturnDiskSpace();
                     Console.WriteLine("\n" + _mailTo);
@@ -55,6 +60,7 @@ namespace ServerStatusReporter
                         Console.WriteLine("Error!  No send-to email address was specified.\n");
                         return;
                     }
+
                     Console.Write("Running in verbose mode!\n\n");
                     isVerbose = true;
                     _mailTo = args[1];
@@ -92,7 +98,6 @@ namespace ServerStatusReporter
             {
                 EmailToTarget(ReportHeader + reportBody);
             }
-            
         }
 
         private static void EmailToTarget(string body)
