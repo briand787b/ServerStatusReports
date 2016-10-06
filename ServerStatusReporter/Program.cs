@@ -50,6 +50,11 @@ namespace ServerStatusReporter
                 case "-vr":
                 case "-rv":
                     // Run the program in verbose mode (output all activity to console).
+                    if (args.Length < 2)
+                    {
+                        Console.WriteLine("Error!  No send-to email address was specified.\n");
+                        return;
+                    }
                     Console.Write("Running in verbose mode!\n\n");
                     isVerbose = true;
                     _mailTo = args[1];
